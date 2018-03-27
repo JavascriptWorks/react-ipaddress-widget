@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import IPAddress from './IPAddress';
 import $ from "jquery";
+import '../css/ipaddress-widget.css';
 
 class IPAddressWidget extends Component {
     constructor() {
@@ -35,7 +36,7 @@ class IPAddressWidget extends Component {
 
     render() {
         return (
-            <div>
+            <div className="ip-address-widget">
                 <IPAddress ip={this.state.ip}/>
             </div>
         );

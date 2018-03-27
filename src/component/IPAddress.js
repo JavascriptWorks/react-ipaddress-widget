@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
+// import '../css/ipaddress-widget.css';
 
 class IPAddress extends Component {
     render() {
         return (
-            <div>{this.props.ip}</div>
+            <div className="ip-address-display">
+                {this.props.ip}
+            </div>
         );
     }
 }

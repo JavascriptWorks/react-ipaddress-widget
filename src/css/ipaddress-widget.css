@@ -1,0 +1,15 @@
+.ip-address-widget {
+    width: 200px;
+    height: 50px;
+    border-radius: 10px; /*curved-corner*/
+    padding: 50px;
+    background-color: rgb(129, 9, 9);
+    display:inline-block;
+    text-align:center;
+    vertical-align:middle;
+}
+
+.ip-address-display {
+    color: aqua;
+    font-size: 30px;
+}
