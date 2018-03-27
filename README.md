@@ -4,18 +4,13 @@ Below you will find some information on how to perform common tasks.<br>
 You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
 ## Table of Contents
-
-- [Updating to New Releases](#updating-to-new-releases)
-- [Sending Feedback](#sending-feedback)
+- [Inspiration](#inspiration)
 - [Folder Structure](#folder-structure)
 - [Available Scripts](#available-scripts)
   - [npm start](#npm-start)
   - [npm test](#npm-test)
   - [npm run build](#npm-run-build)
   - [npm run eject](#npm-run-eject)
-- [Supported Browsers](#supported-browsers)
-- [Supported Language Features and Polyfills](#supported-language-features-and-polyfills)
-- [Syntax Highlighting in the Editor](#syntax-highlighting-in-the-editor)
 - [Displaying Lint Output in the Editor](#displaying-lint-output-in-the-editor)
 - [Debugging in the Editor](#debugging-in-the-editor)
 - [Formatting Code Automatically](#formatting-code-automatically)
@@ -70,10 +65,6 @@ You can find the most recent version of this guide [here](https://github.com/fac
 - [Debugging Tests](#debugging-tests)
   - [Debugging Tests in Chrome](#debugging-tests-in-chrome)
   - [Debugging Tests in Visual Studio Code](#debugging-tests-in-visual-studio-code)
-- [Developing Components in Isolation](#developing-components-in-isolation)
-  - [Getting Started with Storybook](#getting-started-with-storybook)
-  - [Getting Started with Styleguidist](#getting-started-with-styleguidist)
-- [Publishing Components to npm](#publishing-components-to-npm)
 - [Making a Progressive Web App](#making-a-progressive-web-app)
   - [Opting Out of Caching](#opting-out-of-caching)
   - [Offline-First Considerations](#offline-first-considerations)
@@ -101,48 +92,26 @@ You can find the most recent version of this guide [here](https://github.com/fac
   - [`npm run build` fails to minify](#npm-run-build-fails-to-minify)
   - [Moment.js locales are missing](#momentjs-locales-are-missing)
 - [Alternatives to Ejecting](#alternatives-to-ejecting)
-- [Something Missing?](#something-missing)
 
-## Updating to New Releases
-
-Create React App is divided into two packages:
-
-* `create-react-app` is a global command-line utility that you use to create new projects.
-* `react-scripts` is a development dependency in the generated projects (including this one).
-
-You almost never need to update `create-react-app` itself: it delegates all the setup to `react-scripts`.
-
-When you run `create-react-app`, it always creates the project with the latest version of `react-scripts` so you’ll get all the new features and improvements in newly created apps automatically.
-
-To update an existing project to a new version of `react-scripts`, [open the changelog](https://github.com/facebookincubator/create-react-app/blob/master/CHANGELOG.md), find the version you’re currently on (check `package.json` in this folder if you’re not sure), and apply the migration instructions for the newer versions.
-
-In most cases bumping the `react-scripts` version in `package.json` and running `npm install` in this folder should be enough, but it’s good to consult the [changelog](https://github.com/facebookincubator/create-react-app/blob/master/CHANGELOG.md) for potential breaking changes.
-
-We commit to keeping the breaking changes minimal so you can upgrade `react-scripts` painlessly.
-
-## Sending Feedback
-
-We are always open to [your feedback](https://github.com/facebookincubator/create-react-app/issues).
+## Inspiration
+* [Book: Learning React by Kirupa Chinnathambi](https://amzn.to/2ISaSvD)
 
 ## Folder Structure
 
-After creation, your project should look like this:
-
+This project directory should look like this:
 ```
-my-app/
+react-ipaddress-widget/
   README.md
   node_modules/
   package.json
   public/
     index.html
     favicon.ico
+    manifest.json
   src/
-    App.css
-    App.js
-    App.test.js
-    index.css
+    component/
+    css/
     index.js
-    logo.svg
 ```
 
 For the project to build, **these files must exist with exact filenames**:
@@ -197,42 +166,6 @@ If you aren’t satisfied with the build tool and configuration choices, you can
 Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Supported Browsers
-
-By default, the generated project uses the latest version of React.
-
-You can refer [to the React documentation](https://reactjs.org/docs/react-dom.html#browser-support) for more information about supported browsers.
-
-## Supported Language Features and Polyfills
-
-This project supports a superset of the latest JavaScript standard.<br>
-In addition to [ES6](https://github.com/lukehoban/es6features) syntax features, it also supports:
-
-* [Exponentiation Operator](https://github.com/rwaldron/exponentiation-operator) (ES2016).
-* [Async/await](https://github.com/tc39/ecmascript-asyncawait) (ES2017).
-* [Object Rest/Spread Properties](https://github.com/sebmarkbage/ecmascript-rest-spread) (stage 3 proposal).
-* [Dynamic import()](https://github.com/tc39/proposal-dynamic-import) (stage 3 proposal)
-* [Class Fields and Static Properties](https://github.com/tc39/proposal-class-public-fields) (part of stage 3 proposal).
-* [JSX](https://facebook.github.io/react/docs/introducing-jsx.html) and [Flow](https://flowtype.org/) syntax.
-
-Learn more about [different proposal stages](https://babeljs.io/docs/plugins/#presets-stage-x-experimental-presets-).
-
-While we recommend using experimental proposals with some caution, Facebook heavily uses these features in the product code, so we intend to provide [codemods](https://medium.com/@cpojer/effective-javascript-codemods-5a6686bb46fb) if any of these proposals change in the future.
-
-Note that **the project only includes a few ES6 [polyfills](https://en.wikipedia.org/wiki/Polyfill)**:
-
-* [`Object.assign()`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) via [`object-assign`](https://github.com/sindresorhus/object-assign).
-* [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) via [`promise`](https://github.com/then/promise).
-* [`fetch()`](https://developer.mozilla.org/en/docs/Web/API/Fetch_API) via [`whatwg-fetch`](https://github.com/github/fetch).
-
-If you use any other ES6+ features that need **runtime support** (such as `Array.from()` or `Symbol`), make sure you are including the appropriate polyfills manually, or that the browsers you are targeting already support them.
-
-Also note that using some newer syntax features like `for...of` or `[...nonArrayValue]` causes Babel to emit code that depends on ES6 runtime features and might not work without a polyfill. When in doubt, use [Babel REPL](https://babeljs.io/repl/) to see what any specific syntax compiles down to.
-
-## Syntax Highlighting in the Editor
-
-To configure the syntax highlighting in your favorite text editor, head to the [relevant Babel documentation page](https://babeljs.io/docs/editors) and follow the instructions. Some of the most popular editors are covered.
 
 ## Displaying Lint Output in the Editor
 
@@ -1691,90 +1624,6 @@ Use the following [`launch.json`](https://code.visualstudio.com/docs/editor/debu
 }
 ```
 
-## Developing Components in Isolation
-
-Usually, in an app, you have a lot of UI components, and each of them has many different states.
-For an example, a simple button component could have following states:
-
-* In a regular state, with a text label.
-* In the disabled mode.
-* In a loading state.
-
-Usually, it’s hard to see these states without running a sample app or some examples.
-
-Create React App doesn’t include any tools for this by default, but you can easily add [Storybook for React](https://storybook.js.org) ([source](https://github.com/storybooks/storybook)) or [React Styleguidist](https://react-styleguidist.js.org/) ([source](https://github.com/styleguidist/react-styleguidist)) to your project. **These are third-party tools that let you develop components and see all their states in isolation from your app**.
-
-![Storybook for React Demo](http://i.imgur.com/7CIAWpB.gif)
-
-You can also deploy your Storybook or style guide as a static app. This way, everyone in your team can view and review different states of UI components without starting a backend server or creating an account in your app.
-
-### Getting Started with Storybook
-
-Storybook is a development environment for React UI components. It allows you to browse a component library, view the different states of each component, and interactively develop and test components.
-
-First, install the following npm package globally:
-
-```sh
-npm install -g @storybook/cli
-```
-
-Then, run the following command inside your app’s directory:
-
-```sh
-getstorybook
-```
-
-After that, follow the instructions on the screen.
-
-Learn more about React Storybook:
-
-* Screencast: [Getting Started with React Storybook](https://egghead.io/lessons/react-getting-started-with-react-storybook)
-* [GitHub Repo](https://github.com/storybooks/storybook)
-* [Documentation](https://storybook.js.org/basics/introduction/)
-* [Snapshot Testing UI](https://github.com/storybooks/storybook/tree/master/addons/storyshots) with Storybook + addon/storyshot
-
-### Getting Started with Styleguidist
-
-Styleguidist combines a style guide, where all your components are presented on a single page with their props documentation and usage examples, with an environment for developing components in isolation, similar to Storybook. In Styleguidist you write examples in Markdown, where each code snippet is rendered as a live editable playground.
-
-First, install Styleguidist:
-
-```sh
-npm install --save react-styleguidist
-```
-
-Alternatively you may use `yarn`:
-
-```sh
-yarn add react-styleguidist
-```
-
-Then, add these scripts to your `package.json`:
-
-```diff
-   "scripts": {
-+    "styleguide": "styleguidist server",
-+    "styleguide:build": "styleguidist build",
-     "start": "react-scripts start",
-```
-
-Then, run the following command inside your app’s directory:
-
-```sh
-npm run styleguide
-```
-
-After that, follow the instructions on the screen.
-
-Learn more about React Styleguidist:
-
-* [GitHub Repo](https://github.com/styleguidist/react-styleguidist)
-* [Documentation](https://react-styleguidist.js.org/docs/getting-started.html)
-
-## Publishing Components to npm
-
-Create React App doesn't provide any built-in functionality to publish a component to npm. If you're ready to extract a component from your project so other people can use it, we recommend moving it to a separate directory outside of your project and then using a tool like [nwb](https://github.com/insin/nwb#react-components-and-libraries) to prepare it for publishing.
-
 ## Making a Progressive Web App
 
 By default, the production build is a fully functional, offline-first
@@ -2428,7 +2277,3 @@ In the future, we might start automatically compiling incompatible third-party m
 ## Alternatives to Ejecting
 
 [Ejecting](#npm-run-eject) lets you customize anything, but from that point on you have to maintain the configuration and scripts yourself. This can be daunting if you have many similar projects. In such cases instead of ejecting we recommend to *fork* `react-scripts` and any other packages you need. [This article](https://auth0.com/blog/how-to-configure-create-react-app/) dives into how to do it in depth. You can find more discussion in [this issue](https://github.com/facebookincubator/create-react-app/issues/682).
-
-## Something Missing?
-
-If you have ideas for more “How To” recipes that should be on this page, [let us know](https://github.com/facebookincubator/create-react-app/issues) or [contribute some!](https://github.com/facebookincubator/create-react-app/edit/master/packages/react-scripts/template/README.md)
