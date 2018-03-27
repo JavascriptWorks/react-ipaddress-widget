@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import IPAddress from './IPAddress';
 import $ from "jquery";
 
-let xhr;
 class IPAddressWidget extends Component {
     constructor() {
         super();        
@@ -10,7 +9,7 @@ class IPAddressWidget extends Component {
     }
 
     state = {
-        ip: '0.0.0.0'
+        ip: '0.0.0.0',
     };
 
     componentDidMount() {
@@ -18,9 +17,9 @@ class IPAddressWidget extends Component {
     }
 
     fetchMyIP() {
-        $.getJSON( "https://ipinfo.io/json", 
-                    (data)=>this.setState({ip: data.ip})
-                );
+        $.getJSON("https://ipinfo.io/json")
+        .done((data)=> this.setState({ip: data.ip}))
+        .fail((xhr,status,err)=>console.log(status));
     }
 
     render() {
