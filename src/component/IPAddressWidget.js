@@ -16,17 +16,20 @@ class IPAddressWidget extends Component {
         this.fetchMyIP();
     }
 
-    fetchMyIP() {
+    fetchMyIP(attempt=0,maxAttempt=5) {
+        attempt++;
         $.ajaxSetup({
-            timeout: 500,
-            retryAfter: 5000, //1 sec
+            timeout: 3000,
+            retryAfter: 3000, //1 sec
         });
         $.ajax({
             url: "https://ipinfo.io/json"
         }).done((data)=> this.setState({ip: data.ip}))
         .fail((xhr,status,err)=> {
-            console.log(status, ": retrying in "+ $.ajaxSetup().retryAfter + ' seconds');
-            setTimeout(this.fetchMyIP, $.ajaxSetup().retryAfter);
+            console.log(status, ": retrying in "+ $.ajaxSetup().retryAfter/1000 + ' seconds');
+            if(attempt<maxAttempt) {
+                setTimeout(this.fetchMyIP(attempt), $.ajaxSetup().retryAfter);
+            }
         });
     }
 
