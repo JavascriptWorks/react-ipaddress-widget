@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
 import IPAddress from './IPAddress';
+import $ from "jquery";
 
 let xhr;
 class IPAddressWidget extends Component {
     constructor() {
         super();        
         this.fetchMyIP = this.fetchMyIP.bind(this);
-        this.processIPRequest = this.processIPRequest.bind(this);
-        this.cleanupEventListeners = this.cleanupEventListeners.bind(this);
     }
 
     state = {
@@ -18,30 +17,10 @@ class IPAddressWidget extends Component {
         this.fetchMyIP();
     }
 
-    componentWillMount() {
-        this.cleanupEventListeners();
-    }
-
-    cleanupEventListeners() {
-        if(typeof(xhr) != 'undefined') {
-            xhr.removeEvevntListener("readystatechange", this.processIPRequest, false);
-        }
-    }
-
     fetchMyIP() {
-        xhr = new XMLHttpRequest();
-        xhr.open("GET", "https://ipinfo.io/json", true);
-        xhr.send();
-        xhr.addEventListener("readystatechange", this.processIPRequest, false);
-    }
-
-    processIPRequest() {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            let response = JSON.parse(xhr.responseText);
-            this.setState({
-                ip: response.ip
-            });
-        }
+        $.getJSON( "https://ipinfo.io/json", 
+                    (data)=>this.setState({ip: data.ip})
+                );
     }
 
     render() {
